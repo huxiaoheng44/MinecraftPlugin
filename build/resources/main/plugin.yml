@@ -1,0 +1,30 @@
+main: com.huxiaoheng.MyPlugin
+name: Myplugin
+version: 1.0.0
+author: huxiaoheng
+commands:
+  show:
+    description: "显示玩家的一些信息"
+    aliases: ['zhanshi','xianshi']
+    usage: "Usage /show name|money|location"
+  cheat:
+    description: "use for cheat"
+    aliases: zuobi
+    usage: "Usage /cheat fly|recover|..."
+
+permission:
+  vip.*:
+    description: "vip信息管理"
+    children:
+      vip.v1: true
+      vip.v2: false
+      vip.v3: false
+    vip.v1:
+      description: "1级vip"
+      default: ture
+    vip.v2:
+      description: "2级vip"
+      default: op
+    vip.v3:
+      default: op
+

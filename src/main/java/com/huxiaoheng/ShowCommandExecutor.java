@@ -7,9 +7,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ShowCommandExecutor implements CommandExecutor {
-    private final MyPlugun plugin;
+    private final MyPlugin plugin;
 
-    public ShowCommandExecutor(MyPlugun plugin) {
+    public ShowCommandExecutor(MyPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -23,6 +23,22 @@ public class ShowCommandExecutor implements CommandExecutor {
                 Location l = ((Player) commandSender).getLocation();
                 plugin.getLogger().info("Player location:\n"+"x:"+l.getBlockX()+"\ny:"+l.getBlockY()+"\nz:"+l.getBlockZ());
                 commandSender.sendMessage("Your location:\n"+"x:"+l.getBlockX()+"\ny:"+l.getBlockY()+"\nz:"+l.getBlockZ());
+                Player player = (Player)commandSender;
+                if(player.hasPermission("vip.v1")){
+                    player.sendMessage("你有v1权限");
+                }else{
+                    player.sendMessage("你没有v1权限");
+                }
+                if(player.hasPermission("vip.v2")){
+                    player.sendMessage("你有v2权限");
+                }else{
+                    player.sendMessage("你没有v2权限");
+                }
+                if(player.hasPermission("vip.v3")){
+                    player.sendMessage("你有v3权限");
+                }else{
+                    player.sendMessage("你没有v3权限");
+                }
                 return true;
             }
         }else {
