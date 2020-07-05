@@ -1,5 +1,7 @@
 package com.huxiaoheng;
 
+import Utils.BlockUtils;
+import jdk.tools.jlink.plugin.Plugin;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -13,6 +15,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.graalvm.compiler.phases.schedule.BlockClosure;
 
 public class addEvent implements Listener {
@@ -31,11 +34,35 @@ public class addEvent implements Listener {
             b.setType(Material.GOLD_BLOCK);
 
         }
+        if(player.hasPermission("lao")){
+            Location loc = event.getPlayer().getLocation();
+            Block b1 = BlockUtils.getShiftBlock(loc,-1,0,0);
+            Block b2 = BlockUtils.getShiftBlock(loc,+1,0,0);
+            Block b1_xia = BlockUtils.getShiftBlock(loc,-1,-1,0);
+            Block b2_xia = BlockUtils.getShiftBlock(loc,+1,-1,0);
+            Block b = BlockUtils.getShiftBlock(loc,0,0,0);
+            b1_xia.setType(Material.IRON_BLOCK);
+            b2_xia.setType(Material.IRON_BLOCK);
+            b1.setType(Material.REDSTONE_TORCH_ON);
+            b2.setType(Material.REDSTONE_TORCH_ON);
+            b.setType(Material.POWERED_RAIL);
+            MyPlugin.plugin.getLogger().info("get face:"+b1.getFace(b1).toString());
+            MyPlugin.plugin.getLogger().info("get relative:"+b1.getRelative(b1.getFace(b)).toString());
+
+        }
     }
     @EventHandler
     public void PlayerIn(PlayerJoinEvent event){
+        Player player = event.getPlayer(); // 当玩家加入游戏
+        PlayerInventory inventory = player.getInventory(); // 获取玩家背包列表
+        ItemStack itemstack = new ItemStack(Material.DIAMOND, 64); // 生成一组钻石
+
+        if (!inventory.contains(itemstack)) {
+            inventory.addItem(itemstack); // 将一组钻石放到玩家的背包里
+            player.sendMessage("Wow！你的钻石哪来的！"); //向玩家发送消息("Wow！你看上去很土豪啊！")
+        }
         MyPlugin.plugin.getLogger().info("玩家触发了加入游戏事件");
-        Player player = event.getPlayer();
+        //Player player = event.getPlayer();
         player.sendMessage("欢迎加入"+player.getName());
 
 
