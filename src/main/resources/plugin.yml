@@ -1,9 +1,9 @@
 main: com.huxiaoheng.MyPlugin
 name: Myplugin
 version: 1.0.0
-author: huxiaoheng
-depend:
+depends:
   - Vault
+  - TitleAPI
 commands:
   show:
     description: "显示玩家的一些信息"
@@ -13,6 +13,9 @@ commands:
     description: "use for cheat"
     aliases: zuobi
     usage: "Usage /cheat fly|recover|..."
+  money:
+    description: "economy module"
+    useage: "Usage /money []"
 
 permission:
   vip.*:

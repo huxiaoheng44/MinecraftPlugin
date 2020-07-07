@@ -1,9 +1,13 @@
 package com.huxiaoheng;
 
 
-import Utils.VaultUtil;
+import com.huxiaoheng.CommendExecutor.CheatCommandExecutor;
+import com.huxiaoheng.CommendExecutor.EconomyCommandExecutor;
+import com.huxiaoheng.CommendExecutor.ShowCommandExecutor;
+import com.huxiaoheng.EventListener.EffectEvent;
+import com.huxiaoheng.EventListener.addEventListener;
+import com.huxiaoheng.Utils.VaultUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -15,7 +19,9 @@ public class MyPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        Bukkit.getPluginManager().registerEvents(new addEvent(),this);
+        Bukkit.getPluginManager().registerEvents(new addEventListener(),this);
+        Bukkit.getPluginManager().registerEvents(new EffectEvent(),this);
+        this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
         this.getCommand("show").setExecutor(new ShowCommandExecutor(this));
         this.getCommand("Cheat").setExecutor(new CheatCommandExecutor(this));
         getLogger().info("----------第一个plugin启动------------");
