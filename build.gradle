@@ -14,9 +14,11 @@ tasks.withType(JavaCompile){
 repositories {
     mavenCentral()
     flatDir {dirs("libs")}
+    maven { url 'https://jitpack.io' }
 }
 
 
 dependencies {
     compile fileTree(dir:'libs',includes: ["*.jar"])
+    //compileOnly "com.github.MilkBowl:VaultAPI:1.2"
 }

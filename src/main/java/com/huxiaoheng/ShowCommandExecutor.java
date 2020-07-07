@@ -24,6 +24,24 @@ public class ShowCommandExecutor implements CommandExecutor {
                 plugin.getLogger().info("Player location:\n"+"x:"+l.getBlockX()+"\ny:"+l.getBlockY()+"\nz:"+l.getBlockZ());
                 commandSender.sendMessage("Your location:\n"+"x:"+l.getBlockX()+"\ny:"+l.getBlockY()+"\nz:"+l.getBlockZ());
                 Player player = (Player)commandSender;
+                //权限
+                if(player.isPermissionSet("vip")){
+                    player.sendMessage("用户设置了vip权限");
+                }else{
+                    player.sendMessage("用户没有设置vip权限");
+                }
+
+                if(player.isPermissionSet("vip.v1")){
+                    player.sendMessage("用户设置了v1权限");
+                }else{
+                    player.sendMessage("用户没有设置v1权限");
+                }
+
+                if(player.hasPermission("vip")){
+                    player.sendMessage("你有vip权限");
+                }else{
+                    player.sendMessage("你没有vip权限");
+                }
                 if(player.hasPermission("vip.v1")){
                     player.sendMessage("你有v1权限");
                 }else{

@@ -1,22 +1,31 @@
 package com.huxiaoheng;
 
 import Utils.BlockUtils;
+import Utils.VaultUtil;
 import jdk.tools.jlink.plugin.Plugin;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.graalvm.compiler.phases.schedule.BlockClosure;
+
+
 
 public class addEvent implements Listener {
     @EventHandler
@@ -45,6 +54,13 @@ public class addEvent implements Listener {
             b2_xia.setType(Material.IRON_BLOCK);
             b1.setType(Material.REDSTONE_TORCH_ON);
             b2.setType(Material.REDSTONE_TORCH_ON);
+            //try to add a inventory to the block
+            Inventory inventory_b = Bukkit.createInventory((InventoryHolder) b, InventoryType.CHEST,"rail");
+            Inventory inventory_b1 = Bukkit.createInventory((InventoryHolder) b1, InventoryType.CHEST,"rail");
+            ItemStack itemStack = new ItemStack(Material.MINECART,10);
+
+            inventory_b.addItem(itemStack);
+            inventory_b1.addItem(itemStack);
             b.setType(Material.POWERED_RAIL);
             MyPlugin.plugin.getLogger().info("get face:"+b1.getFace(b1).toString());
             MyPlugin.plugin.getLogger().info("get relative:"+b1.getRelative(b1.getFace(b)).toString());
@@ -63,42 +79,19 @@ public class addEvent implements Listener {
         }
         MyPlugin.plugin.getLogger().info("玩家触发了加入游戏事件");
         //Player player = event.getPlayer();
-        player.sendMessage("欢迎加入"+player.getName());
+        player.sendMessage("欢迎加入!"+player.getName());
+        VaultUtil.give(player.getUniqueId(),100);
+        player.sendMessage("送了你100块");
+//        EconomyResponse res = econ.createBank(player.getName(),player.getName());
+//        player.sendMessage(res.toString());
+//        player.sendMessage(String.format("你现在只有 %s 元", econ.format(econ.getBalance(player.getName()))));
+//        EconomyResponse r = econ.depositPlayer(player.getName(), 1.05);
+//        if(r.transactionSuccess()) {
+//            player.sendMessage(String.format("你刚刚得到了 %s 元，现在总共有 %s 元", econ.format(r.amount), econ.format(r.balance)));
+//        } else {
+//            player.sendMessage(String.format("遇到了一个问题: %s", r.errorMessage));
+//        }
 
-
-
-        if(player.isPermissionSet("vip")){
-            player.sendMessage("用户设置了vip权限");
-        }else{
-            player.sendMessage("用户没有设置vip权限");
-        }
-
-        if(player.isPermissionSet("vip.v1")){
-            player.sendMessage("用户设置了v1权限");
-        }else{
-            player.sendMessage("用户没有设置v1权限");
-        }
-
-        if(player.hasPermission("vip")){
-            player.sendMessage("你有vip权限");
-        }else{
-            player.sendMessage("你没有vip权限");
-        }
-        if(player.hasPermission("vip.v1")){
-            player.sendMessage("你有v1权限");
-        }else{
-            player.sendMessage("你没有v1权限");
-        }
-        if(player.hasPermission("vip.v2")){
-            player.sendMessage("你有v2权限");
-        }else{
-            player.sendMessage("你没有v2权限");
-        }
-        if(player.hasPermission("vip.v3")){
-            player.sendMessage("你有v3权限");
-        }else{
-            player.sendMessage("你没有v3权限");
-        }
 
     }
 
