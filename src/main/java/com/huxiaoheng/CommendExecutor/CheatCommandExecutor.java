@@ -4,6 +4,7 @@ import com.connorlinfoot.titleapi.TitleAPI;
 import com.huxiaoheng.EventListener.EffectEvent;
 import com.huxiaoheng.MyPlugin;
 import com.huxiaoheng.EventListener.addEventListener;
+import com.huxiaoheng.TeleHorse;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,6 +15,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.metadata.MetadataValueAdapter;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.graalvm.compiler.lir.alloc.lsra.LinearScan;
@@ -63,7 +66,7 @@ public class CheatCommandExecutor implements CommandExecutor {
                         Inventory inv1 = Bukkit.createInventory(null, InventoryType.CHEST, "§2 !seesaw!");
                         ItemStack itemStack = new ItemStack(Material.APPLE,13);
                         ItemStack MineCart = new ItemStack(Material.MINECART,3);
-                        ItemStack rail = new ItemStack(Material.RAILS,20);
+                        ItemStack rail = new ItemStack(Material.BED,20);
                         String itemname = "JinPingGuo";
                         ItemMeta itemMeta = itemStack.getItemMeta();
                         itemMeta.setDisplayName(itemname);
@@ -97,15 +100,15 @@ public class CheatCommandExecutor implements CommandExecutor {
                         MaterialData materialData = new MaterialData(Material.STONE);
                         FallingBlock b = world.spawnFallingBlock(l,new MaterialData(Material.GOLD_BLOCK));
                         b.setDropItem(false);
-//                        Entity entity = world.spawnEntity(l.add(1,0,1), EntityType.GHAST);
-//                        entity.setCustomName("Ghasht");
-//                        entity.set
                         world.spawnEntity(l.add(2,0,1), EntityType.SNOWMAN);
-                        Entity pass = world.spawnEntity(l.add(1,0,1), EntityType.PIG);
-                        Entity entity = (Horse) world.spawnEntity(l.add(2,0,1), EntityType.SHEEP);
-                        entity.setCustomName("Horse");
+                        Entity entity = world.spawnEntity(l.add(l.getDirection()), EntityType.HORSE);
+                        TeleHorse teleHorse = new TeleHorse((Player) commandSender,entity,l.clone().subtract(l));
+                        entity.setCustomName("TeleHorse");
+                        //Entity entity1 = world.spawnEntity(l.add(2,0,1), EntityType.POLAR_BEAR);
+                        //commandSender.sendMessage("UUID"+entity.getUniqueId());
+                        //commandSender.sendMessage("chaxun Loca"+TeleHorse.getTargetLoaction(entity.getUniqueId()));
+
                         entity.setCustomNameVisible(true);
-                        entity.addPassenger(pass);
 
                     }
 

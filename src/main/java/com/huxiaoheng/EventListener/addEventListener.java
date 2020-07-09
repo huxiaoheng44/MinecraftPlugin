@@ -106,17 +106,17 @@ public class addEventListener implements Listener {
 
     }
 
-    @EventHandler
-    public void addMore(PlayerInteractEntityEvent event){
-        Player player = event.getPlayer();
-        player.sendMessage("你点击了"+event.getRightClicked());
-        MyPlugin.plugin.getLogger().info("玩家触发了加入游戏事件");
-        Inventory inventory = player.getInventory();
-        ItemStack itemStack = new ItemStack((ItemStack) event.getRightClicked());
-        itemStack.setAmount(1);
-        inventory.addItem(itemStack);
-
-    }
+//    @EventHandler
+//    public void addMore(PlayerInteractEntityEvent event){
+//        Player player = event.getPlayer();
+//        player.sendMessage("你点击了"+event.getRightClicked());
+//        MyPlugin.plugin.getLogger().info("玩家触发了加入游戏事件");
+//        Inventory inventory = player.getInventory();
+//        ItemStack itemStack = new ItemStack((ItemStack) event.getRightClicked());
+//        itemStack.setAmount(1);
+//        inventory.addItem(itemStack);
+//
+//    }
 
 
 }
