@@ -1,5 +1,6 @@
 package com.huxiaoheng.EventListener;
 
+import com.earth2me.essentials.Essentials;
 import com.huxiaoheng.MyPlugin;
 import com.huxiaoheng.Utils.BlockUtils;
 import com.huxiaoheng.Utils.LocationUtil;
@@ -82,7 +83,7 @@ public class addEventListener implements Listener {
     public void PlayerIn(PlayerJoinEvent event){
         Player player = event.getPlayer(); // 当玩家加入游戏
         PlayerInventory inventory = player.getInventory(); // 获取玩家背包列表
-        ItemStack itemstack = new ItemStack(Material.DIAMOND, 64); // 生成一组钻石
+        ItemStack itemstack = new ItemStack(Material.ITEM_FRAME, 64); // 生成一组钻石
 
         if (!inventory.contains(itemstack)) {
             inventory.addItem(itemstack); // 将一组钻石放到玩家的背包里

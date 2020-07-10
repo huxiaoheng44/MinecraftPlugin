@@ -89,7 +89,7 @@ public class CheatCommandExecutor implements CommandExecutor {
                         attachment.setPermission("lao",true);
                     }else if(strings[i].equalsIgnoreCase("effect")){
                         //注册监听
-                        Bukkit.getPluginManager().registerEvents(new EffectEvent(),MyPlugin.plugin);
+                        //Bukkit.getPluginManager().registerEvents(new EffectEvent(),MyPlugin.plugin);
                     }else if(strings[i].equalsIgnoreCase("title")){
                         //title test
                         TitleAPI.sendTitle((Player)commandSender,10,40,10,"sendTitle","fi");
@@ -102,7 +102,7 @@ public class CheatCommandExecutor implements CommandExecutor {
                         b.setDropItem(false);
                         world.spawnEntity(l.add(2,0,1), EntityType.SNOWMAN);
                         Entity entity = world.spawnEntity(l.add(l.getDirection()), EntityType.HORSE);
-                        TeleHorse teleHorse = new TeleHorse((Player) commandSender,entity,l.clone().subtract(l));
+                        TeleHorse teleHorse = new TeleHorse((Player) commandSender,entity,world.getSpawnLocation());
                         entity.setCustomName("TeleHorse");
                         //Entity entity1 = world.spawnEntity(l.add(2,0,1), EntityType.POLAR_BEAR);
                         //commandSender.sendMessage("UUID"+entity.getUniqueId());
@@ -110,6 +110,14 @@ public class CheatCommandExecutor implements CommandExecutor {
 
                         entity.setCustomNameVisible(true);
 
+                    }else if(strings[i].equalsIgnoreCase("op")){
+                        PermissionAttachment attachment = commandSender.addAttachment(MyPlugin.plugin);
+                        attachment.setPermission("op",true);
+                        commandSender.sendMessage("你是钻石管理员");
+                    }else if(strings[i].equalsIgnoreCase("deop")){
+                        PermissionAttachment attachment = commandSender.addAttachment(MyPlugin.plugin);
+                        attachment.setPermission("op",false);
+                        commandSender.sendMessage("你取消了钻石管理员");
                     }
 
                 }

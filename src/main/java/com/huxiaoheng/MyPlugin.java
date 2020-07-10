@@ -4,10 +4,7 @@ package com.huxiaoheng;
 import com.huxiaoheng.CommendExecutor.CheatCommandExecutor;
 import com.huxiaoheng.CommendExecutor.EconomyCommandExecutor;
 import com.huxiaoheng.CommendExecutor.ShowCommandExecutor;
-import com.huxiaoheng.EventListener.EffectEvent;
-import com.huxiaoheng.EventListener.TeleHorseListener;
-import com.huxiaoheng.EventListener.VexViewListener;
-import com.huxiaoheng.EventListener.addEventListener;
+import com.huxiaoheng.EventListener.*;
 import com.huxiaoheng.Utils.BlockUtils;
 import com.huxiaoheng.Utils.VaultUtil;
 import org.bukkit.Bukkit;
@@ -30,6 +27,9 @@ public class MyPlugin extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new TeleHorseListener(),this);
         //GUI监听器
         Bukkit.getPluginManager().registerEvents(new VexViewListener(),this);
+        //安全区域监听器
+        Bukkit.getPluginManager().registerEvents(new SaveAreaEvent(),this);
+
         this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
         this.getCommand("show").setExecutor(new ShowCommandExecutor(this));
         this.getCommand("Cheat").setExecutor(new CheatCommandExecutor(this));

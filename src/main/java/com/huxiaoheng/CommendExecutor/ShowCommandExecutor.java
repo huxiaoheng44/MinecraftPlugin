@@ -85,7 +85,7 @@ public class ShowCommandExecutor implements CommandExecutor {
                     return true;
                 }else if(strings[0].equalsIgnoreCase("gui")){
                     MyPlugin.plugin.getLogger().info("成功打开GUI");
-                    VexViewAPI.openGui(player,MyGUI.fisstGui(player));
+                    VexViewAPI.openGui(player,MyGUI.InsureMainGui(player));
                     TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
                     return true;
                 }else if(strings[0].equalsIgnoreCase("ren")){
@@ -101,6 +101,14 @@ public class ShowCommandExecutor implements CommandExecutor {
                 }else if(strings[0].equalsIgnoreCase("remove")){
                     VexViewAPI.removePlayerTag((Player) commandSender,"成就");
                     commandSender.sendMessage("头衔取消成功");
+                    return true;
+                }else if(strings[0].equalsIgnoreCase("insure")){
+                    VexViewAPI.openGui(player,MyGUI.InsureMessage(player));
+                    //TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
+                    return true;
+                }else if(strings[0].equalsIgnoreCase("buy")){
+                    VexViewAPI.openGui(player,MyGUI.InsurePurchase(player));
+                    //TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
                     return true;
                 }
             }
