@@ -7,11 +7,12 @@ import lk.vexview.gui.components.*;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Vex;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class MyGUI {
+
+    public static HashMap<UUID,Boolean> affirmMap = new HashMap<UUID, Boolean>();
+
     public static VexGui InsureMainGui(Player player){
         List<VexComponents> vexComponentsList = new ArrayList<>();
         vexComponentsList.add(new VexButton(1,"购买保险","[local]button.png","[local]button_.png",-1,80,120,30,p -> {
@@ -69,6 +70,26 @@ public class MyGUI {
         vexComponentsList.add(new VexText(275,200,Arrays.asList("有效时间:30天"),1.5));
         vexComponentsList.add(new VexButton(3,"购买","[local]button.png","[local]button_.png",295,225,35,25));
         return new VexGui("[local]insurePurchase.png",-1,-1,400,270,vexComponentsList);
+    }
+
+    public static VexGui AffirmLogue(Player player,ArrayList message){
+        List<VexComponents> vexComponentsList = new ArrayList<>();
+
+        //添加中间text信息
+        //使用该句子List<String> message = new ArrayList<String>();
+        List<String> messages = new ArrayList<String>();
+        messages.add("确认要购买吗");
+        vexComponentsList.add(new VexText(-1,25,messages,2));
+
+        vexComponentsList.add(new VexButton(1,"确认","[local]button.png","[local]button_.png",20,50,30,15,p -> {
+            //确认  记得用完要remove掉
+            MyGUI.affirmMap.put(player.getUniqueId(),true);
+        }));
+        vexComponentsList.add(new VexButton(2,"取消","[local]button.png","[local]button_.png",40,50,30,15,player1 -> {
+            //取消确认  记得用完要remove掉
+            MyGUI.affirmMap.put(player.getUniqueId(),false);
+        }));
+        return new VexGui("[local]InsureMessage.png",-1,-1,80,60,vexComponentsList);
     }
 
 }

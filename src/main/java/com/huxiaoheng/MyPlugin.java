@@ -5,9 +5,11 @@ import com.huxiaoheng.CommendExecutor.CheatCommandExecutor;
 import com.huxiaoheng.CommendExecutor.EconomyCommandExecutor;
 import com.huxiaoheng.CommendExecutor.ShowCommandExecutor;
 import com.huxiaoheng.EventListener.*;
+import com.huxiaoheng.SQL.Mysql;
 import com.huxiaoheng.Utils.BlockUtils;
 import com.huxiaoheng.Utils.VaultUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -16,6 +18,14 @@ public class MyPlugin extends JavaPlugin {
     public static JavaPlugin plugin;
     //vault plugin
     private static final Logger log = Logger.getLogger("Minecraft");
+
+    public static YamlConfiguration config;
+    //数据库连接
+    public static Mysql mysql;
+
+    //merge------>
+
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -51,6 +61,15 @@ public class MyPlugin extends JavaPlugin {
         }else{
             plugin.getLogger().info("----------VexView启动失败----------");
         }
+
+        //数据库连接
+        plugin.getLogger().info("----------数据库连接----------");
+
+//        mysql = new Mysql();
+//        if (mysql.isEnabled()) {
+//            mysql.connect();
+//            mysql.createTable();
+//        }
 
         super.onEnable();
     }

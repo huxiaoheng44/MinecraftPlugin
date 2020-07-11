@@ -33,31 +33,12 @@ import static org.bukkit.entity.EntityType.ITEM_FRAME;
 public class SaveAreaEvent implements Listener {
     @EventHandler
     public void SaveAreaInteract(PlayerInteractEvent event) {
-//        Player player = event.getPlayer();
-//        // 得到玩家当前的坐标.
-//        Location location =  player.getLocation();
-//        Location spawnLocation = player.getWorld().getSpawnLocation();
-//        Block block = event.getClickedBlock();
-//        player.sendMessage("----------------PlayerInteractEvent-----------------");
-//        player.sendMessage("你点击了Block"+block.getType());
-//
-//        if(location.getX()-spawnLocation.getX()<=30 && location.getZ()-spawnLocation.getZ()<=30 && !event.getPlayer().hasPermission("op")){
-//            if(block.getType() == Material.ENDER_PORTAL_FRAME){
-//                player.sendMessage("你点击了ENDER_PORTAL_FRAME");
-//                Inventory inventory = player.getInventory();
-//                ItemStack itemStack = new ItemStack(block.getType(),6);
-//                inventory.addItem(itemStack);
-//                event.setCancelled(true);
-//            }else if(block.getType() == Material.ITEM_FRAME){
-//                player.sendMessage("你点击了ITEM_FRAME");
-//                Inventory inventory = player.getInventory();
-//                ItemStack itemStack = new ItemStack(block.getType(),6);
-//                inventory.addItem(itemStack);
-//            }else {
-//                //player.sendMessage("你不是管理员不能进行操作:"+event.getAction());
-//            }
-//        }
-
+        Player player = event.getPlayer();
+        if(PeaceAreaUtil.IsPeaceArea(player.getLocation())) {
+            if(event.getClickedBlock().getType().equals(ITEM_FRAME)){
+                
+            }
+        }
     }
     @EventHandler
     public void SaveAreaInteractEntity(PlayerInteractEntityEvent event) {

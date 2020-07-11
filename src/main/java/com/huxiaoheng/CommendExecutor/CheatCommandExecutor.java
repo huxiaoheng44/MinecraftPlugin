@@ -72,6 +72,7 @@ public class CheatCommandExecutor implements CommandExecutor {
                         itemMeta.setDisplayName(itemname);
                         itemStack.setItemMeta(itemMeta);
                         List<String> lores = new ArrayList<String>();
+                        //添加物品的具体信息
                         lores.add("+5攻击力");  //第一行lore
                         lores.add("abc");  //这条lore在123之后
                         ItemStack myItem = new ItemStack(Material.DIAMOND_SWORD);  //你的物品

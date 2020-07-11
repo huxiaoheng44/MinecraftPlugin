@@ -13,12 +13,16 @@ public class VexViewListener implements Listener {
     @EventHandler
     public void PlayerOpneGui(VexGuiOpenEvent event){
         VexGui gui = event.getGui();
-        //如果是保险主界面
-        if(gui.getUrl().equals("[local]InsureMain.png")){
-            //购买保险按钮
+        //如果是购买保险
+        if(gui.getUrl().equals("[local]insurePurchase.png")){
+            //购买第一个购买按钮
             VexButton b1 = gui.getButtonByHashCode(1);
-            //查看保险信息按钮
+            MyPlugin.plugin.getLogger().info("点击了按钮一");
+            //第二个购买按钮
             VexButton b2 = gui.getButtonByHashCode(2);
+            //第三个购买按钮
+            VexButton b3 = gui.getButtonByHashCode(3);
+            MyPlugin.plugin.getLogger().info("点击了按钮一");
         }
     }
 }
